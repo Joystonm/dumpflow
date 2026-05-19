@@ -11,8 +11,11 @@ function detectType(content, file) {
     return 'file'
   }
   if (!content) return 'text'
-  if (/^https?:\/\/github\.com/i.test(content.trim())) return 'github'
-  if (/^https?:\/\//i.test(content.trim())) return 'link'
+  const trimmed = String(content).trim()
+  // Check if it's a URL first (most specific)
+  if (/^https?:\/\/github\.com/i.test(trimmed)) return 'github'
+  if (/^https?:\/\//i.test(trimmed)) return 'link'
+  // Check if it's a multi-line prompt
   if (content.length > 50 && /\n/.test(content)) return 'prompt'
   return 'text'
 }
