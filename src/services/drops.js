@@ -11,8 +11,8 @@ function detectType(content, file) {
     return 'file'
   }
   if (!content) return 'text'
-  if (/^https?:\/\/github\.com/i.test(content)) return 'github'
-  if (/^https?:\/\//i.test(content)) return 'link'
+  if (/^https?:\/\/github\.com/i.test(content.trim())) return 'github'
+  if (/^https?:\/\//i.test(content.trim())) return 'link'
   if (content.length > 50 && /\n/.test(content)) return 'prompt'
   return 'text'
 }
