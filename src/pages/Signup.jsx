@@ -22,7 +22,10 @@ export default function Signup() {
       options: { data: { full_name: form.name } },
     })
     if (error) { toast.error(error.message); setLoading(false) }
-    else toast.success('Account created!')
+    else {
+      toast.success('Account created!')
+      navigate('/app', { replace: true })
+    }
   }
 
   return (

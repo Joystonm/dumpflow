@@ -18,7 +18,7 @@ export default function Login() {
     setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) { toast.error(error.message); setLoading(false) }
-    // navigation handled by onAuthStateChange in useAuth
+    else navigate('/app', { replace: true })
   }
 
   return (

@@ -17,12 +17,8 @@ export function useAuth() {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null)
-      if (session?.user) {
-        fetchProfile(session.user.id)
-        if (event === 'SIGNED_IN' && (location.pathname === '/login' || location.pathname === '/signup')) {
-          navigate('/app', { replace: true })
-        }
-      } else {
+      if (session?.user) fetchProfile(session.user.id)
+      else {
         setProfile(null)
         setLoading(false)
       }
